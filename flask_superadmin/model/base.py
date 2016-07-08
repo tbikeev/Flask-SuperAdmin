@@ -137,24 +137,28 @@ class BaseModelAdmin(BaseView):
 
     def get_readonly_fields(self, instance):
         ret_vals = {}
+
         for field in self.readonly_fields:
-            self_field = getattr(self, field, None)
-            if callable(self_field):
-                val = self_field(instance)
+            if instance:
+                self_field = getattr(self, field, None)
+                if callable(self_field):
+                    val = self_field(instance)
+                else:
+                    val = getattr(instance, field)
+                    if callable(val):
+                        val = val()
+                if not isinstance(val, dict):
+                    # Check if the value is a reference field to a doc/model
+                    # registered in the admin. If so, link to it.
+                    reference = self.get_reference(val)
+                    val = {
+                        'label': prettify(field),
+                        'value': val,
+                        'url': reference if reference else None
+                    }
+                ret_vals[field] = val
             else:
-                val = getattr(instance, field)
-                if callable(val):
-                    val = val()
-            if not isinstance(val, dict):
-                # Check if the value is a reference field to a doc/model
-                # registered in the admin. If so, link to it.
-                reference = self.get_reference(val)
-                val = {
-                    'label': prettify(field),
-                    'value': val,
-                    'url': reference if reference else None
-                }
-            ret_vals[field] = val
+                ret_vals[field] = None
         return ret_vals
 
     def get_converter(self):
