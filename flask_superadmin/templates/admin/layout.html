@@ -57,6 +57,8 @@
         {% for category, m in messages %}
           {% if category == 'error' %}
           <div class="alert alert-error">
+          {% elif category == 'success' %}
+          <div class="alert alert-success">
           {% else %}
           <div class="alert">
           {% endif %}
