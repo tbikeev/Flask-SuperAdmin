@@ -1,7 +1,7 @@
 try:
-    from flask.ext.babel import Domain
+    from flask_babel import Domain
 
-    from flask.ext.superadmin import translations
+    from flask_superadmin import translations
 
     class CustomDomain(Domain):
         def __init__(self):

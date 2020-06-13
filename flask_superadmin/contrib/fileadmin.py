@@ -14,7 +14,7 @@ from flask import flash, url_for, redirect, abort, request
 from flask_superadmin.base import BaseView, expose
 from flask_superadmin.babel import gettext, lazy_gettext
 from flask_superadmin import form
-from flask.ext import wtf
+import flask_wtf as wtf
 
 
 class NameForm(form.BaseForm):

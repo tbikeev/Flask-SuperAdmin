@@ -1,8 +1,8 @@
 from flask import Flask, url_for, redirect, render_template, request
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
-from flask.ext import superadmin, login, wtf
-from flask.ext.superadmin.contrib import sqlamodel
+import flask_superadmin as superadmin
+from flask_superadmin.contrib import sqlamodel
 
 # Create application
 app = Flask(__name__)

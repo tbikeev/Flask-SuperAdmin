@@ -1,7 +1,7 @@
 from nose.tools import eq_, ok_, raises
 
 from flask import Flask
-from flask.ext import wtf
+import flask_wtf as wtf
 from flask_superadmin import Admin
 
 

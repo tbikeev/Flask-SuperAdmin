@@ -1,8 +1,8 @@
 from flask import Flask, url_for, redirect, render_template, request
 from mongoengine import *
 
-from flask.ext import superadmin, login, wtf
-from flask.ext.superadmin.contrib import mongoenginemodel
+import flask_superadmin as superadmin
+from flask_superadmin.contrib import mongoenginemodel
 
 # Create application
 app = Flask(__name__)
